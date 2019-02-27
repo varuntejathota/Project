@@ -45,10 +45,18 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
@@ -124,11 +132,54 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\BundleConfig.cs" />
+    <Compile Include="App_Start\BundleConfig2.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
+    <Compile Include="App_Start\FilterConfig2.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="App_Start\RouteConfig2.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Customer.cs">
+      <DependentUpon>Insurance.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Document.cs">
+      <DependentUpon>Insurance.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Endorsement.cs">
+      <DependentUpon>Insurance.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Insurance.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Insurance.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Insurance.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Insurance.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Insurance.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Insurance.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Models\LoginAdmin.cs">
+      <DependentUpon>Insurance.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\LoginDetail.cs">
+      <DependentUpon>Insurance.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Nominee.cs">
+      <DependentUpon>Insurance.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\PolicyDetail.cs">
+      <DependentUpon>Insurance.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\product.cs">
+      <DependentUpon>Insurance.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -141,8 +192,25 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="Models\Insurance.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>Insurance.Context.cs</LastGenOutput>
+      <DependentUpon>Insurance.edmx</DependentUpon>
+    </Content>
+    <Content Include="Models\Insurance.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>Insurance.edmx</DependentUpon>
+      <LastGenOutput>Insurance.cs</LastGenOutput>
+    </Content>
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
+    <EntityDeploy Include="Models\Insurance.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>Insurance.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="Models\Insurance.edmx.diagram">
+      <DependentUpon>Insurance.edmx</DependentUpon>
+    </Content>
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
     <Content Include="Scripts\jquery-3.3.1.min.js" />
@@ -171,7 +239,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Models\" />
+    <Folder Include="Views\Login\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
@@ -185,6 +253,9 @@
     <None Include="packages.config" />
     <Content Include="Scripts\jquery-3.3.1.slim.min.map" />
     <Content Include="Scripts\jquery-3.3.1.min.map" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
