@@ -132,16 +132,16 @@ constraint fk_endid foreign key(EndorsementId) references Project_5PLP.Documents
 )
 select * from Project_5PLP.Endorsement
 ----------------------------Dispaly Customer Details------------------
-create procedure Project_5.usp_DisplayCustomerDetails
+create procedure Project_5PLP.usp_DisplayCustomerDetails
 AS
 BEgin 
-select * from Project_5.Customer
+select * from Project_5PLP.Customer
 end
 
-exec Project_5.usp_DisplayCustomerDetails
+exec Project_5PLP.usp_DisplayCustomerDetails
 
 ------------------------------Updating the details----------
-create   proc Project_5.uspEditProduct
+create   proc Project_5PLP.uspEditProduct
 (
 @CustomerId int ,
 @CustomerName varchar(30),
@@ -168,7 +168,7 @@ end
 
 
 ----------------------------procedure fro search------------
-create proc Project_5.uspSearchProduct
+create proc Project_5PLP.uspSearchProduct
 (
 @CustomerId int
 )
@@ -214,7 +214,7 @@ select* from  Project_5PLP.PolicyDetails
  
 
 --------------------------------------------------------stored procedures for search policy---
-create proc Project_5.usp_SearchPolicy
+create proc Project_5PLP.usp_SearchPolicy
 (
 @CustomerId int,
 @DOB Datetime,
@@ -234,7 +234,7 @@ exec Project_5.usp_SearchPolicy 2,'04/05/1996',1002
 
 -------------------------------------------------Procedure for login-------------------------------	 
     	
-create proc Project_5.uspLogin
+create proc Project_5PLP.uspLogin
 (
 @LoginId int,
 @LoginPassword varchar(10)
@@ -247,7 +247,7 @@ end
 
 exec Project_5.uspLogin 123,'elbin@123'
 --------------------------------stored procedures for admin login--------------
-create proc Project_5.uspLoginadmin
+create proc Project_5PLP.uspLoginadmin
 (
 @LoginId varchar(10),
 @LoginPassword varchar(10)
@@ -262,7 +262,7 @@ exec Project_5.uspLoginadmin 'admin','admin'
 
 
 ---------------------------------create procedure for view-------------------
-create proc Project_5.usp_ViewPolicy
+create proc Project_5PLP.usp_ViewPolicy
 (
 @CustomerId int
 )
@@ -277,10 +277,10 @@ begin
 	
 end
 
-exec Project_5.usp_ViewPolicy  
+exec Project_5PLP.usp_ViewPolicy  
 
 ------------------------------------create procedure for update-----------------------------
-create procedure Project_5.usp_UpdatePolicy
+create procedure Project_5PLP.usp_UpdatePolicy
 @CustomerId int,
 @CustomerName varchar(30),
 @CustomerAddress varchar(30),
@@ -295,18 +295,18 @@ create procedure Project_5.usp_UpdatePolicy
 @Relation varchar(20)
 AS
 BEGIN
-update Project_5.Customer
+update Project_5PLP.Customer
 SET CustomerName=@CustomerName,CustomerAddress=@CustomerAddress,CustomerPhoneNo=@CustomerPhoneNo,Gender=@Gender,Age=@Age,
 DOB=@DOB,Habits=@Habits
-where Project_5.Customer.CustomerId=@CustomerId;
-update Project_5.products
+where Project_5PLP.Customer.CustomerId=@CustomerId;
+update Project_5PLP.products
 set PremiumPaymentFrequency=@PremiumPaymentFrequency
-where Project_5.products.ProductId=@ProductId;
-update Project_5.Nominee
+where Project_5PLP.products.ProductId=@ProductId;
+update Project_5PLP.Nominee
 set NomineeName=@NomineeName,Relation=@Relation
-where Project_5.Nominee.CustomerId = @CustomerId
+where Project_5PLP.Nominee.CustomerId = @CustomerId
 END
-exec Project_5.usp_UpdatePolicy 5,'vijay','karmangaht',8374016242,'M',22,'11/09/1996','NoSmoking',101,'Annual','preethi','sister'
+exec Project_5PLP.usp_UpdatePolicy 5,'vijay','karmangaht',8374016242,'M',22,'11/09/1996','NoSmoking',101,'Annual','preethi','sister'
 
 --------------------------------Table to insert Documents in img format------------------
 create table Project_5PLP.Documents(
@@ -320,18 +320,18 @@ constraint fk_custIDoc foreign key(CustomerId) references Project_5PLP.Customer(
 select * from  Project_5PLP.Documents
 -------------------------stored procedure to add document img to Table----------------------
 
-create proc Project_5.usp_UploadDocuments(
+create proc Project_5PLP.usp_UploadDocuments(
 @CustomerId int,
 @id varchar(50),
 @images image
 )
 as
 begin
-insert into Project_5.Documents(CustomerId,id,images) values(@CustomerId,@id,@images)
+insert into Project_5PLP.Documents(CustomerId,id,images) values(@CustomerId,@id,@images)
 end
 
 ------------------------procedure for editable update---------------
-create procedure Project_5.usp_UpdatePolicy1
+create procedure Project_5PLP.usp_UpdatePolicy1
 @CustomerId int,
 @CustomerName varchar(30),
 @CustomerAddress varchar(30),
@@ -342,27 +342,27 @@ create procedure Project_5.usp_UpdatePolicy1
 @Hobbies varchar(20)
 AS
 BEGIN
-update Project_5.Customer
+update Project_5PLP.Customer
 SET CustomerName=@CustomerName,CustomerAddress=@CustomerAddress,CustomerPhoneNo=@CustomerPhoneNo,Gender=@Gender,
 DOB=@DOB,Habits=@Habits,Hobbies=@Hobbies
-where Project_5.Customer.CustomerId=@CustomerId;
+where Project_5PLP.Customer.CustomerId=@CustomerId;
 end
-exec Project_5.usp_UpdatePolicy1 5,'varunteja','karmangaht',8374016242,'M','11/09/1996','NoSmoking','PlayingSPorts'
+exec Project_5PLP.usp_UpdatePolicy1 5,'varunteja','karmangaht',8374016242,'M','11/09/1996','NoSmoking','PlayingSPorts'
 
 --------------------------------------------------procedure for view details of admin page----------------------------------------------
-alter procedure Project_5.usp_ViewAdmin
+create procedure Project_5PLP.usp_ViewAdmin
 
 as 
 begin
 select c1.CustomerId,c1.CustomerName,c1.Age,c1.CustomerAddress,c1.CustomerPhoneNo,c1.Gender,c1.DOB,c1.Habits,c1.Hobbies,n1.NomineeName,n1.Relation,n1.Age,p1.PolicyNumber,p2.ProductId,p2.ProductName,p2.PremiumPayment,p2.PremiumPaymentFrequency,p2.ProductLine from Project_5.Customer c1 inner join Project_5.Nominee n1  ON c1.CustomerId = n1.CustomerId
 	inner join 
-	Project_5.PolicyDetails p1 on p1.CustomerId =n1.CustomerId 
+	Project_5PLP.PolicyDetails p1 on p1.CustomerId =n1.CustomerId 
 	inner join 
-	Project_5.Products p2 on p1.ProductId = p2.ProductId 
+	Project_5PLP.Products p2 on p1.ProductId = p2.ProductId 
 end
-exec Project_5.usp_ViewAdmin
+exec Project_5PLP.usp_ViewAdmin
 ------------------------------------------endorsement status procedure--------------------------------
-create procedure Project_5.usp_EndorsementStatus
+create procedure Project_5PLP.usp_EndorsementStatus
 (
 @CustomerId int,
 @EndorsementId int,
@@ -370,19 +370,19 @@ create procedure Project_5.usp_EndorsementStatus
 )
 as 
 begin
-insert into Project_5.Endorsement values(@CustomerId,@EndorsementId,@Status)
+insert into Project_5PLP.Endorsement values(@CustomerId,@EndorsementId,@Status)
 end
-exec Project_5.usp_EndorsementStatus 1,3,'Approved'
+exec Project_5PLP.usp_EndorsementStatus 1,3,'Approved'
 
-delete from Project_5.Endorsement where CustomerId=1
+delete from Project_5PLP.Endorsement where CustomerId=1
 --------------------------------------customer endorsement--------------------
-alter procedure Project_5.usp_ViewEndorsement
+create procedure Project_5PLP.usp_ViewEndorsement
 @CustomerId int
 as 
 begin
 select c1.CustomerId,c1.CustomerName,c1.Age,c1.CustomerAddress,c1.CustomerPhoneNo,c1.Gender,c1.DOB,c1.Habits,c1.Hobbies,n1.NomineeName,n1.Relation,n1.Age,e1.EndorsementStatus,e1.EndorsementId from Project_5.Customer c1 inner join Project_5.Nominee n1  ON c1.CustomerId = n1.CustomerId
 	inner join 
-	Project_5.Endorsement e1 on e1.CustomerId = c1.CustomerId
+	Project_5PLP.Endorsement e1 on e1.CustomerId = c1.CustomerId
 	where @CustomerId in(e1.CustomerId,c1.CustomerId)
 end
-exec Project_5.usp_ViewEndorsement 
+exec Project_5PLP.usp_ViewEndorsement 1
