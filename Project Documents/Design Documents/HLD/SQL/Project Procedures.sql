@@ -318,7 +318,7 @@ constraint fk_custIDoc foreign key(CustomerId) references Project_5PLP.Customer(
 
 
 select * from  Project_5PLP.Documents
--------------------------stored procedure to add document image to Table----------------------
+-------------------------stored procedure to add document img to Table----------------------
 
 create proc Project_5PLP.usp_UploadDocuments(
 @CustomerId int,
