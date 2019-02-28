@@ -1,6 +1,6 @@
-create schema Project_5
+create schema Project_5PLP
 
-create table Project_5.Customer
+create table Project_5PLP.Customer
 (
 CustomerId int primary key identity(1,1),
 CustomerName varchar(30),
@@ -11,95 +11,97 @@ Gender varchar(30),
 DOB datetime,
 Habits varchar(20),
 Hobbies varchar(20)
-)select *from Project_5.Customer
+)
+select *from Project_5PLP.Customer
 
-insert into Project_5.Customer values('Elbin',22,'Kerala',8765432190,'M','07/09/1997','NoSmoking','PlayingSPorts')
-insert into Project_5.Customer values('Preethi',23,'Hyderabed',9087654321,'F','04/05/1996','NoSmoking','ReadinBooks')
-insert into Project_5.Customer values('Aparna',23,'Karimnagar',8907654321,'F','05/09/1996','NoSmoking','PlayingSPorts')
-insert into Project_5.Customer values('Varun',22,'Hyderabad',9876543210,'M','07/08/1997','NoSmoking','playingCricket')
-insert into Project_5.Customer values('Durga',23,'Hyderabad',9807654321,'F','07/07/1996','NoSmoking','PlayingSPorts')
-insert into Project_5.Customer values('Arthi',22,'Alwal',8976054633,'F','04/08/1997','NoSmoking','Dancing')
-insert into Project_5.Customer values('Arpitha',22,'Bejjanki',7890765432,'M','07/09/1997','NoSmoking','Cooking')
-insert into Project_5.Customer values('Albin',23,'Kerala',7890654321,'M','03/02/1996','NoSmoking','ListeningMusic')
-insert into Project_5.Customer values('Ankitha',24,'Bangalore',9087689065,'F','04/11/1995','NoSmoking','WatchingTv')
-insert into Project_5.Customer values('Sowmya',23,'Chennai',8899765432,'F','11/01/1996','NoSmoking','Gardening')
-insert into Project_5.Customer values('Akanksha',24,'Pune',9080706050,'F','07/12/1995','NoSmoking','CollectingStamps')
-insert into Project_5.Customer values('Akhil',23,'GandhiNagar',9871234560,'M','08/01/1996','Smoking','Drawing')
-insert into Project_5.Customer values('Sannith',21,'Chennai',9087098765,'M','11/02/1998','NoSmoking','Painting')
-insert into Project_5.Customer values('Ayush',25,'Mumbai',9231456780,'M','05/12/1994','Smoking','Driving')
-insert into Project_5.Customer values('Saketh',24,'Pune',9878909879,'M','01/07/1995','NoSmoking','Sleeping')
-insert into Project_5.Customer values('Praveen',24,'Pune',9678543981,'M','01/09/1995','NoSmoking','playing')
+insert into Project_5PLP.Customer values('Elbin',22,'Kerala',8765432190,'M','07/09/1997','NoSmoking','PlayingSPorts')
+insert into Project_5PLP.Customer values('Preethi',23,'Hyderabed',9087654321,'F','04/05/1996','NoSmoking','ReadinBooks')
+insert into Project_5PLP.Customer values('Aparna',23,'Karimnagar',8907654321,'F','05/09/1996','NoSmoking','PlayingSPorts')
+insert into Project_5PLP.Customer values('Varun',22,'Hyderabad',9876543210,'M','07/08/1997','NoSmoking','playingCricket')
+insert into Project_5PLP.Customer values('Durga',23,'Hyderabad',9807654321,'F','07/07/1996','NoSmoking','PlayingSPorts')
+insert into Project_5PLP.Customer values('Arthi',22,'Alwal',8976054633,'F','04/08/1997','NoSmoking','Dancing')
+insert into Project_5PLP.Customer values('Arpitha',22,'Bejjanki',7890765432,'M','07/09/1997','NoSmoking','Cooking')
+insert into Project_5PLP.Customer values('Albin',23,'Kerala',7890654321,'M','03/02/1996','NoSmoking','ListeningMusic')
+insert into Project_5PLP.Customer values('Ankitha',24,'Bangalore',9087689065,'F','04/11/1995','NoSmoking','WatchingTv')
+insert into Project_5PLP.Customer values('Sowmya',23,'Chennai',8899765432,'F','11/01/1996','NoSmoking','Gardening')
+insert into Project_5PLP.Customer values('Akanksha',24,'Pune',9080706050,'F','07/12/1995','NoSmoking','CollectingStamps')
+insert into Project_5PLP.Customer values('Akhil',23,'GandhiNagar',9871234560,'M','08/01/1996','Smoking','Drawing')
+insert into Project_5PLP.Customer values('Sannith',21,'Chennai',9087098765,'M','11/02/1998','NoSmoking','Painting')
+insert into Project_5PLP.Customer values('Ayush',25,'Mumbai',9231456780,'M','05/12/1994','Smoking','Driving')
+insert into Project_5PLP.Customer values('Saketh',24,'Pune',9878909879,'M','01/07/1995','NoSmoking','Sleeping')
+insert into Project_5PLP.Customer values('Praveen',24,'Pune',9678543981,'M','01/09/1995','NoSmoking','playing')
 
 ------------------------------------------Nominee table-------------------
-create  table Project_5.Nominee
+create  table Project_5PLP.Nominee
 (
+NomineeId int primary key identity(1,1),
 CustomerId int,
 NomineeName varchar(20),
 Relation varchar(20),
 Age int,
-constraint fk_CustId FOREIGN KEY (CustomerId) REFERENCES Project_5.Customer(CustomerId)
+constraint fk_CustId FOREIGN KEY (CustomerId) REFERENCES Project_5PLP.Customer(CustomerId)
 )
-insert into Project_5.Nominee values('1','Padma','Mother',46)
-insert into Project_5.Nominee values('2','Ram','Father',30)
-insert into Project_5.Nominee values('3','Mamatha','Mother',50)
-insert into Project_5.Nominee values('4','Swarna','Mother',40)
-insert into Project_5.Nominee values('5','Srinivas','Father',49)
-insert into Project_5.Nominee values('6','Saritha','Mother',44)
-insert into Project_5.Nominee values('7','Lakshman','Father',55)
-insert into Project_5.Nominee values('8','Sudheer','Father',56)
-insert into Project_5.Nominee values('9','Krishna','Father',51)
-insert into Project_5.Nominee values('10','Harishwar','Father',48)
-insert into Project_5.Nominee values('11','Srini','Father',49)
-insert into Project_5.Nominee values('12','Sheeja','Mother',44)
-insert into Project_5.Nominee values('13','Lakshmi','Mother',55)
-insert into Project_5.Nominee values('14','Sudheeran','Father',56)
-insert into Project_5.Nominee values('15','Krishnan','Father',51)
-insert into Project_5.Nominee values('16','Harish','Father',48)
+insert into Project_5PLP.Nominee values('1','Padma','Mother',46)
+insert into Project_5PLP.Nominee values('2','Ram','Father',30)
+insert into Project_5PLP.Nominee values('3','Mamatha','Mother',50)
+insert into Project_5PLP.Nominee values('4','Swarna','Mother',40)
+insert into Project_5PLP.Nominee values('5','Srinivas','Father',49)
+insert into Project_5PLP.Nominee values('6','Saritha','Mother',44)
+insert into Project_5PLP.Nominee values('7','Lakshman','Father',55)
+insert into Project_5PLP.Nominee values('8','Sudheer','Father',56)
+insert into Project_5PLP.Nominee values('9','Krishna','Father',51)
+insert into Project_5PLP.Nominee values('10','Harishwar','Father',48)
+insert into Project_5PLP.Nominee values('11','Srini','Father',49)
+insert into Project_5PLP.Nominee values('12','Sheeja','Mother',44)
+insert into Project_5PLP.Nominee values('13','Lakshmi','Mother',55)
+insert into Project_5PLP.Nominee values('14','Sudheeran','Father',56)
+insert into Project_5PLP.Nominee values('15','Krishnan','Father',51)
+insert into Project_5PLP.Nominee values('16','Harish','Father',48)
 
 
 
-select *from Project_5.Nominee
+select *from Project_5PLP.Nominee
 
 ------------------------Login table----------------
-create table Project_5.LoginDetails
+create table Project_5PLP.LoginDetails
 (
 CustomerId int,
-loginId int ,
+loginId int primary key  ,
 loginPassword varchar(10),
-constraint fk_id FOREIGN KEY (CustomerId) REFERENCES Project_5.Customer(CustomerId)
+constraint fk_id FOREIGN KEY (CustomerId) REFERENCES Project_5PLP.Customer(CustomerId)
 )
-insert into Project_5.LoginDetails values(1,123,'elbin@123')
-insert into Project_5.LoginDetails values(2,124,'preet@123')
-insert into Project_5.LoginDetails values(3,125,'aparna@123')
-insert into Project_5.LoginDetails values(4,126,'varun@123')
-insert into Project_5.LoginDetails values(5,127,'durga@123')
-insert into Project_5.LoginDetails values(6,128,'Arthi@123')
-insert into Project_5.LoginDetails values(7,129,'Arpita@123')
-insert into Project_5.LoginDetails values(8,130,'Albin@123')
-insert into Project_5.LoginDetails values(9,131,'Ankita@123')
-insert into Project_5.LoginDetails values(10,132,'Sowmya@123')
-insert into Project_5.LoginDetails values(11,133,'Akan@123')
-insert into Project_5.LoginDetails values(12,134,'Akhil@123')
-insert into Project_5.LoginDetails values(13,135,'Sanith@123')
-insert into Project_5.LoginDetails values(14,136,'Ayush@123')
-insert into Project_5.LoginDetails values(15,137,'Saketh@123')
-insert into Project_5.LoginDetails values(16,138,'arjun@123')
+insert into Project_5PLP.LoginDetails values(1,123,'elbin@123')
+insert into Project_5PLP.LoginDetails values(2,124,'preet@123')
+insert into Project_5PLP.LoginDetails values(3,125,'aparna@123')
+insert into Project_5PLP.LoginDetails values(4,126,'varun@123')
+insert into Project_5PLP.LoginDetails values(5,127,'durga@123')
+insert into Project_5PLP.LoginDetails values(6,128,'Arthi@123')
+insert into Project_5PLP.LoginDetails values(7,129,'Arpita@123')
+insert into Project_5PLP.LoginDetails values(8,130,'Albin@123')
+insert into Project_5PLP.LoginDetails values(9,131,'Ankita@123')
+insert into Project_5PLP.LoginDetails values(10,132,'Sowmya@123')
+insert into Project_5PLP.LoginDetails values(11,133,'Akan@123')
+insert into Project_5PLP.LoginDetails values(12,134,'Akhil@123')
+insert into Project_5PLP.LoginDetails values(13,135,'Sanith@123')
+insert into Project_5PLP.LoginDetails values(14,136,'Ayush@123')
+insert into Project_5PLP.LoginDetails values(15,137,'Saketh@123')
+insert into Project_5PLP.LoginDetails values(16,138,'arjun@123')
 
 
 
-select *from Project_5.LoginDetails
+select *from Project_5PLP.LoginDetails
 -------------------------------------------Login Admin------------------------------------------------
-create table Project_5.LoginAdmin
+create table Project_5PLP.LoginAdmin
 (
-loginId varchar(10),
+loginId   varchar(10) primary key,
 loginPassword varchar(10)
 )
 
 -------------------------------------------insert admin login and password------------------
-insert into Project_5.LoginAdmin values('admin','admin')
-select * from Project_5.LoginAdmin
+insert into Project_5PLP.LoginAdmin values('admin','admin')
+select * from Project_5PLP.LoginAdmin
 -------------------------------------------Product Table-----------------
-create  table Project_5.products
+create  table Project_5PLP.products
 (
 ProductId int primary key ,
 ProductName varchar(20),
@@ -108,26 +110,27 @@ PremiumPaymentFrequency varchar(30),
 ProductLine varchar(20)
 
 )
-insert into Project_5.products values(101,'New Jeevan Nidhi',10000,'Annual','Life')
-insert into Project_5.products values(102,'Pension Plans',5000,'Monthly','Life')
-insert into Project_5.products values(103,'Special Plan',20000,'Annual','Non-Life')
-insert into Project_5.products values(104,'Health Plans',100000,'Quarterly','Life')
-insert into Project_5.products values(105,'Business-Plans',1000000,'Annual','Non-Life')
+insert into Project_5PLP.products values(101,'New Jeevan Nidhi',10000,'Annual','Life')
+insert into Project_5PLP.products values(102,'Pension Plans',5000,'Monthly','Life')
+insert into Project_5PLP.products values(103,'Special Plan',20000,'Annual','Non-Life')
+insert into Project_5PLP.products values(104,'Health Plans',100000,'Quarterly','Life')
+insert into Project_5PLP.products values(105,'Business-Plans',1000000,'Annual','Non-Life')
 
-select* from Project_5.products
+select* from Project_5PLP.products
 
 
 -------------------Endorsment table ---------------------------------
 ------------
-create table Project_5.Endorsement
+create table Project_5PLP.Endorsement
 (
+Id int  primary key identity(10,1),
 CustomerId int,
 EndorsementId int,
 EndorsementStatus varchar(20),
-constraint fk_id1 FOREIGN KEY (CustomerId) REFERENCES Project_5.Customer(CustomerId),
-constraint fk_endid foreign key(EndorsementId) references Project_5.Documents(EndorsementId)
+constraint fk_id1 FOREIGN KEY (CustomerId) REFERENCES Project_5PLP.Customer(CustomerId),
+constraint fk_endid foreign key(EndorsementId) references Project_5PLP.Documents(EndorsementId)
 )
-select * from Project_5.Endorsement
+select * from Project_5PLP.Endorsement
 ----------------------------Dispaly Customer Details------------------
 create procedure Project_5.usp_DisplayCustomerDetails
 AS
@@ -176,60 +179,40 @@ begin
 end
 
 ---------------------Policy table------------------
-create   table Project_5.PolicyDetails
+create  table Project_5PLP.PolicyDetails
 (
-PolicyNumber int identity (1000,1),
+PolicyNumber int primary key identity (1000,1),
 CustomerId int,
 ProductId int,
 
-constraint fk_CustId1 FOREIGN KEY (CustomerId) REFERENCES Project_5.Customer(CustomerId),
-constraint fk_ProdId FOREIGN KEY (ProductId) REFERENCES Project_5.products(ProductId)
+constraint fk_CustId1 FOREIGN KEY (CustomerId) REFERENCES Project_5PLP.Customer(CustomerId),
+constraint fk_ProdId FOREIGN KEY (ProductId) REFERENCES Project_5PLP.products(ProductId)
 )
-select *from Project_5.PolicyDetails
+select *from Project_5PLP.PolicyDetails
 
-insert into Project_5.PolicyDetails values(1,101)
-insert into Project_5.PolicyDetails values(2,102)
-insert into Project_5.PolicyDetails values(3,103)
-insert into Project_5.PolicyDetails values(4,104)
-insert into Project_5.PolicyDetails values(5,105)
+insert into Project_5PLP.PolicyDetails values(1,101)
+insert into Project_5PLP.PolicyDetails values(2,102)
+insert into Project_5PLP.PolicyDetails values(3,103)
+insert into Project_5PLP.PolicyDetails values(4,104)
+insert into Project_5PLP.PolicyDetails values(5,105)
 
-insert into Project_5.PolicyDetails values(6,105)
-insert into Project_5.PolicyDetails values(7,101)
-insert into Project_5.PolicyDetails values(8,103)
-insert into Project_5.PolicyDetails values(9,104)
-insert into Project_5.PolicyDetails values(10,102)
-insert into Project_5.PolicyDetails values(11,101)
-insert into Project_5.PolicyDetails values(12,101)
-insert into Project_5.PolicyDetails values(13,103)
-insert into Project_5.PolicyDetails values(14,104)
-insert into Project_5.PolicyDetails values(15,102)
-insert into Project_5.PolicyDetails values(16,101)
+insert into Project_5PLP.PolicyDetails values(6,105)
+insert into Project_5PLP.PolicyDetails values(7,101)
+insert into Project_5PLP.PolicyDetails values(8,103)
+insert into Project_5PLP.PolicyDetails values(9,104)
+insert into Project_5PLP.PolicyDetails values(10,102)
+insert into Project_5PLP.PolicyDetails values(11,101)
+insert into Project_5PLP.PolicyDetails values(12,101)
+insert into Project_5PLP.PolicyDetails values(13,103)
+insert into Project_5PLP.PolicyDetails values(14,104)
+insert into Project_5PLP.PolicyDetails values(15,102)
+insert into Project_5PLP.PolicyDetails values(16,101)
 
 
-select* from  Project_5.PolicyDetails
+select* from  Project_5PLP.PolicyDetails
 
- -------------------------------------------------------INNER JOIN for policy number and customer id------------------
---SELECT 	pv1.CustomerId, pv2.PolicyNumber
---drop view Project_5.vw_search as
---select pv1.CustomerId,pv1.CustomerName,pv1.CustomerAddress,pv1.CustomerPhoneNo,pv1.Gender,pv1.Habits,pv1.Hobbies,pv1.DOB,pv2.PolicyNumber,pv2.ProductId
---FROM  Project_5.Customer pv1 
---	INNER JOIN
---	Project_5.PolicyDetails pv2
---	ON pv1.CustomerId = pv2.CustomerId
-
---	select * from Project_5.vw_search where CustomerId=1 and  PolicyNumber=1000 and dob='1997/07/09'
  
--- select * from Project_5.Products
-----------------------------------------------View for Joining Policy and Products------------------------
 
---drop view Project_5.ProductPolicy as
---select pv1.ProductId,pv1.ProductName,pv1.PremiumPaymentFrequency,pv2.PolicyNumber,pv2.CustomerId
---FROM  Project_5.Products pv1 
---	INNER JOIN
---	Project_5.PolicyDetails pv2
---	ON pv1.ProductId = pv2.ProductId
-
---	select*from Project_5.ProductPolicy
 --------------------------------------------------------stored procedures for search policy---
 create proc Project_5.usp_SearchPolicy
 (
@@ -248,7 +231,7 @@ begin
 end
 exec Project_5.usp_SearchPolicy 2,'04/05/1996',1002
 
------------------------------------------------------
+
 -------------------------------------------------Procedure for login-------------------------------	 
     	
 create proc Project_5.uspLogin
@@ -276,30 +259,7 @@ begin
 end
 
 exec Project_5.uspLoginadmin 'admin','admin'
---------------------------------view  for joining nominee and vw_search------------
---drop view Project_5.vw_view as
---select pv1.CustomerId,pv1.CustomerName,pv1.CustomerAddress,pv1.CustomerPhoneNo,pv1.Gender,pv1.Habits,pv1.Hobbies,pv1.DOB,pv2.NomineeName,pv2.Relation
---FROM  Project_5.vw_search pv1 
---	inner  JOIN
---	Project_5.Nominee pv2
---	ON pv1.CustomerId = pv2.CustomerId
 
---	select * from Project_5.vw_view 
-
-----------------------------------------Stored procedure to view policy Details-------------------------\
---drop proc Project_5.usp_ViewPolicy
---(
---@CustomerId int
---)
---as
---begin
---	select * from Project_5.vw_view 
---	where CustomerId = @CustomerId
---end
-
---exec Project_5.usp_ViewPolicy 1
-
---select *  from Project_5.Products,Project_5.Nominee pv2
 
 ---------------------------------create procedure for view-------------------
 create proc Project_5.usp_ViewPolicy
@@ -317,7 +277,7 @@ begin
 	
 end
 
-exec Project_5.usp_ViewPolicy  2
+exec Project_5.usp_ViewPolicy  
 
 ------------------------------------create procedure for update-----------------------------
 create procedure Project_5.usp_UpdatePolicy
@@ -349,15 +309,15 @@ END
 exec Project_5.usp_UpdatePolicy 5,'vijay','karmangaht',8374016242,'M',22,'11/09/1996','NoSmoking',101,'Annual','preethi','sister'
 
 --------------------------------Table to insert Documents in img format------------------
-create table Project_5.Documents(
+create table Project_5PLP.Documents(
 EndorsementId int primary key identity(1,1),
 CustomerId int,
 id varchar(50),
 images image,
-constraint fk_custIDoc foreign key(CustomerId) references Project_5.Customer(CustomerId))
+constraint fk_custIDoc foreign key(CustomerId) references Project_5PLP.Customer(CustomerId))
 
 
-select * from  Project_5.Documents
+select * from  Project_5PLP.Documents
 -------------------------stored procedure to add document img to Table----------------------
 
 create proc Project_5.usp_UploadDocuments(
@@ -391,24 +351,7 @@ exec Project_5.usp_UpdatePolicy1 5,'varunteja','karmangaht',8374016242,'M','11/0
 
 --------------------------------------------------procedure for view details of admin page----------------------------------------------
 alter procedure Project_5.usp_ViewAdmin
---@CustomerId int ,
---@CustomerName varchar(30),
---@Age int,
---@CustomerAddress varchar(30),
---@CustomerPhoneNo Bigint ,
---@Gender varchar(30),
---@DOB datetime,
---@Habits varchar(20),
---@Hobbies varchar(20),
---@NomineeName varchar(20),
---@Relation varchar(20),
---@NAge int,
---@ProductId int,
---@ProductName varchar(20),
---@PremiumPayment money ,
---@PremiumPaymentFrequency varchar(30),
---@ProductLine varchar(20),
---@PolicyNumber int
+
 as 
 begin
 select c1.CustomerId,c1.CustomerName,c1.Age,c1.CustomerAddress,c1.CustomerPhoneNo,c1.Gender,c1.DOB,c1.Habits,c1.Hobbies,n1.NomineeName,n1.Relation,n1.Age,p1.PolicyNumber,p2.ProductId,p2.ProductName,p2.PremiumPayment,p2.PremiumPaymentFrequency,p2.ProductLine from Project_5.Customer c1 inner join Project_5.Nominee n1  ON c1.CustomerId = n1.CustomerId
@@ -442,4 +385,4 @@ select c1.CustomerId,c1.CustomerName,c1.Age,c1.CustomerAddress,c1.CustomerPhoneN
 	Project_5.Endorsement e1 on e1.CustomerId = c1.CustomerId
 	where @CustomerId in(e1.CustomerId,c1.CustomerId)
 end
-exec Project_5.usp_ViewEndorsement 1
+exec Project_5.usp_ViewEndorsement 
