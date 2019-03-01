@@ -1,0 +1,24 @@
+﻿@model InsurancePolicySystem.Models.Customer
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Home</title>
+</head>
+<body>
+    <div>
+        @using (Html.BeginForm("Index", "Customers", FormMethod.Post))
+        {
+            @Html.Label("Enter The Customer Id: ")
+            @Html.TextBoxFor(m => m.CustomerId) <br /><br />
+            @Html.TextBox("txt_btn", "Search", new { Type = "Submit" })
+        }
+    </div>
+</body>
+</html>
