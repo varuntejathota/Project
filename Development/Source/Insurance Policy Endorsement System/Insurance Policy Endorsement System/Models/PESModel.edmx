@@ -1,0 +1,533 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="Training_12Dec18_BangaloreModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Customer">
+          <Key>
+            <PropertyRef Name="CustomerId" />
+          </Key>
+          <Property Name="CustomerId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CustomerName" Type="varchar" MaxLength="30" />
+          <Property Name="Age" Type="int" />
+          <Property Name="CustomerAddress" Type="varchar" MaxLength="30" />
+          <Property Name="CustomerPhoneNo" Type="bigint" />
+          <Property Name="Gender" Type="varchar" MaxLength="30" />
+          <Property Name="DOB" Type="datetime" />
+          <Property Name="Habits" Type="varchar" MaxLength="20" />
+          <Property Name="Hobbies" Type="varchar" MaxLength="20" />
+        </EntityType>
+        <EntityType Name="Documents">
+          <Key>
+            <PropertyRef Name="EndorsementId" />
+          </Key>
+          <Property Name="EndorsementId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CustomerId" Type="int" />
+          <Property Name="id" Type="varchar" MaxLength="50" />
+          <Property Name="images" Type="image" />
+        </EntityType>
+        <EntityType Name="Endorsement">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CustomerId" Type="int" />
+          <Property Name="EndorsementId" Type="int" />
+          <Property Name="EndorsementStatus" Type="varchar" MaxLength="20" />
+        </EntityType>
+        <EntityType Name="LoginAdmin">
+          <Key>
+            <PropertyRef Name="loginId" />
+          </Key>
+          <Property Name="loginId" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="loginPassword" Type="varchar" MaxLength="10" />
+        </EntityType>
+        <EntityType Name="LoginDetails">
+          <Key>
+            <PropertyRef Name="loginId" />
+          </Key>
+          <Property Name="CustomerId" Type="int" />
+          <Property Name="loginId" Type="int" Nullable="false" />
+          <Property Name="loginPassword" Type="varchar" MaxLength="10" />
+        </EntityType>
+        <EntityType Name="Nominee">
+          <Key>
+            <PropertyRef Name="NomineeId" />
+          </Key>
+          <Property Name="NomineeId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CustomerId" Type="int" />
+          <Property Name="NomineeName" Type="varchar" MaxLength="20" />
+          <Property Name="Relation" Type="varchar" MaxLength="20" />
+          <Property Name="Age" Type="int" />
+        </EntityType>
+        <EntityType Name="PolicyDetails">
+          <Key>
+            <PropertyRef Name="PolicyNumber" />
+          </Key>
+          <Property Name="PolicyNumber" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CustomerId" Type="int" />
+          <Property Name="ProductId" Type="int" />
+        </EntityType>
+        <EntityType Name="products">
+          <Key>
+            <PropertyRef Name="ProductId" />
+          </Key>
+          <Property Name="ProductId" Type="int" Nullable="false" />
+          <Property Name="ProductName" Type="varchar" MaxLength="20" />
+          <Property Name="PremiumPayment" Type="money" />
+          <Property Name="PremiumPaymentFrequency" Type="varchar" MaxLength="30" />
+          <Property Name="ProductLine" Type="varchar" MaxLength="20" />
+        </EntityType>
+        <Association Name="fk_CustId">
+          <End Role="Customer" Type="Self.Customer" Multiplicity="0..1" />
+          <End Role="Nominee" Type="Self.Nominee" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Customer">
+              <PropertyRef Name="CustomerId" />
+            </Principal>
+            <Dependent Role="Nominee">
+              <PropertyRef Name="CustomerId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_CustId1">
+          <End Role="Customer" Type="Self.Customer" Multiplicity="0..1" />
+          <End Role="PolicyDetails" Type="Self.PolicyDetails" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Customer">
+              <PropertyRef Name="CustomerId" />
+            </Principal>
+            <Dependent Role="PolicyDetails">
+              <PropertyRef Name="CustomerId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_custIDoc">
+          <End Role="Customer" Type="Self.Customer" Multiplicity="0..1" />
+          <End Role="Documents" Type="Self.Documents" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Customer">
+              <PropertyRef Name="CustomerId" />
+            </Principal>
+            <Dependent Role="Documents">
+              <PropertyRef Name="CustomerId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_endid">
+          <End Role="Documents" Type="Self.Documents" Multiplicity="0..1" />
+          <End Role="Endorsement" Type="Self.Endorsement" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Documents">
+              <PropertyRef Name="EndorsementId" />
+            </Principal>
+            <Dependent Role="Endorsement">
+              <PropertyRef Name="EndorsementId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_id">
+          <End Role="Customer" Type="Self.Customer" Multiplicity="0..1" />
+          <End Role="LoginDetails" Type="Self.LoginDetails" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Customer">
+              <PropertyRef Name="CustomerId" />
+            </Principal>
+            <Dependent Role="LoginDetails">
+              <PropertyRef Name="CustomerId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_id1">
+          <End Role="Customer" Type="Self.Customer" Multiplicity="0..1" />
+          <End Role="Endorsement" Type="Self.Endorsement" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Customer">
+              <PropertyRef Name="CustomerId" />
+            </Principal>
+            <Dependent Role="Endorsement">
+              <PropertyRef Name="CustomerId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_ProdId">
+          <End Role="products" Type="Self.products" Multiplicity="0..1" />
+          <End Role="PolicyDetails" Type="Self.PolicyDetails" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="products">
+              <PropertyRef Name="ProductId" />
+            </Principal>
+            <Dependent Role="PolicyDetails">
+              <PropertyRef Name="ProductId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="Training_12Dec18_BangaloreModelStoreContainer">
+          <EntitySet Name="Customer" EntityType="Self.Customer" Schema="Project_5PLP" store:Type="Tables" />
+          <EntitySet Name="Documents" EntityType="Self.Documents" Schema="Project_5PLP" store:Type="Tables" />
+          <EntitySet Name="Endorsement" EntityType="Self.Endorsement" Schema="Project_5PLP" store:Type="Tables" />
+          <EntitySet Name="LoginAdmin" EntityType="Self.LoginAdmin" Schema="Project_5PLP" store:Type="Tables" />
+          <EntitySet Name="LoginDetails" EntityType="Self.LoginDetails" Schema="Project_5PLP" store:Type="Tables" />
+          <EntitySet Name="Nominee" EntityType="Self.Nominee" Schema="Project_5PLP" store:Type="Tables" />
+          <EntitySet Name="PolicyDetails" EntityType="Self.PolicyDetails" Schema="Project_5PLP" store:Type="Tables" />
+          <EntitySet Name="products" EntityType="Self.products" Schema="Project_5PLP" store:Type="Tables" />
+          <AssociationSet Name="fk_CustId" Association="Self.fk_CustId">
+            <End Role="Customer" EntitySet="Customer" />
+            <End Role="Nominee" EntitySet="Nominee" />
+          </AssociationSet>
+          <AssociationSet Name="fk_CustId1" Association="Self.fk_CustId1">
+            <End Role="Customer" EntitySet="Customer" />
+            <End Role="PolicyDetails" EntitySet="PolicyDetails" />
+          </AssociationSet>
+          <AssociationSet Name="fk_custIDoc" Association="Self.fk_custIDoc">
+            <End Role="Customer" EntitySet="Customer" />
+            <End Role="Documents" EntitySet="Documents" />
+          </AssociationSet>
+          <AssociationSet Name="fk_endid" Association="Self.fk_endid">
+            <End Role="Documents" EntitySet="Documents" />
+            <End Role="Endorsement" EntitySet="Endorsement" />
+          </AssociationSet>
+          <AssociationSet Name="fk_id" Association="Self.fk_id">
+            <End Role="Customer" EntitySet="Customer" />
+            <End Role="LoginDetails" EntitySet="LoginDetails" />
+          </AssociationSet>
+          <AssociationSet Name="fk_id1" Association="Self.fk_id1">
+            <End Role="Customer" EntitySet="Customer" />
+            <End Role="Endorsement" EntitySet="Endorsement" />
+          </AssociationSet>
+          <AssociationSet Name="fk_ProdId" Association="Self.fk_ProdId">
+            <End Role="products" EntitySet="products" />
+            <End Role="PolicyDetails" EntitySet="PolicyDetails" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="Training_12Dec18_BangaloreModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Customer">
+          <Key>
+            <PropertyRef Name="CustomerId" />
+          </Key>
+          <Property Name="CustomerId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CustomerName" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="Age" Type="Int32" />
+          <Property Name="CustomerAddress" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="CustomerPhoneNo" Type="Int64" />
+          <Property Name="Gender" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="DOB" Type="DateTime" Precision="3" />
+          <Property Name="Habits" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="Hobbies" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Nominees" Relationship="Self.fk_CustId" FromRole="Customer" ToRole="Nominee" />
+          <NavigationProperty Name="PolicyDetails" Relationship="Self.fk_CustId1" FromRole="Customer" ToRole="PolicyDetails" />
+          <NavigationProperty Name="Documents" Relationship="Self.fk_custIDoc" FromRole="Customer" ToRole="Documents" />
+          <NavigationProperty Name="LoginDetails" Relationship="Self.fk_id" FromRole="Customer" ToRole="LoginDetails" />
+          <NavigationProperty Name="Endorsements" Relationship="Self.fk_id1" FromRole="Customer" ToRole="Endorsement" />
+        </EntityType>
+        <EntityType Name="Document">
+          <Key>
+            <PropertyRef Name="EndorsementId" />
+          </Key>
+          <Property Name="EndorsementId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CustomerId" Type="Int32" />
+          <Property Name="id" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="images" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <NavigationProperty Name="Customer" Relationship="Self.fk_custIDoc" FromRole="Documents" ToRole="Customer" />
+          <NavigationProperty Name="Endorsements" Relationship="Self.fk_endid" FromRole="Documents" ToRole="Endorsement" />
+        </EntityType>
+        <EntityType Name="Endorsement">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CustomerId" Type="Int32" />
+          <Property Name="EndorsementId" Type="Int32" />
+          <Property Name="EndorsementStatus" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Customer" Relationship="Self.fk_id1" FromRole="Endorsement" ToRole="Customer" />
+          <NavigationProperty Name="Document" Relationship="Self.fk_endid" FromRole="Endorsement" ToRole="Documents" />
+        </EntityType>
+        <EntityType Name="LoginAdmin">
+          <Key>
+            <PropertyRef Name="loginId" />
+          </Key>
+          <Property Name="loginId" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="loginPassword" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="LoginDetail">
+          <Key>
+            <PropertyRef Name="loginId" />
+          </Key>
+          <Property Name="CustomerId" Type="Int32" />
+          <Property Name="loginId" Type="Int32" Nullable="false" />
+          <Property Name="loginPassword" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Customer" Relationship="Self.fk_id" FromRole="LoginDetails" ToRole="Customer" />
+        </EntityType>
+        <EntityType Name="Nominee">
+          <Key>
+            <PropertyRef Name="NomineeId" />
+          </Key>
+          <Property Name="NomineeId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CustomerId" Type="Int32" />
+          <Property Name="NomineeName" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="Relation" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="Age" Type="Int32" />
+          <NavigationProperty Name="Customer" Relationship="Self.fk_CustId" FromRole="Nominee" ToRole="Customer" />
+        </EntityType>
+        <EntityType Name="PolicyDetail">
+          <Key>
+            <PropertyRef Name="PolicyNumber" />
+          </Key>
+          <Property Name="PolicyNumber" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CustomerId" Type="Int32" />
+          <Property Name="ProductId" Type="Int32" />
+          <NavigationProperty Name="Customer" Relationship="Self.fk_CustId1" FromRole="PolicyDetails" ToRole="Customer" />
+          <NavigationProperty Name="product" Relationship="Self.fk_ProdId" FromRole="PolicyDetails" ToRole="products" />
+        </EntityType>
+        <EntityType Name="product">
+          <Key>
+            <PropertyRef Name="ProductId" />
+          </Key>
+          <Property Name="ProductId" Type="Int32" Nullable="false" />
+          <Property Name="ProductName" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="PremiumPayment" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="PremiumPaymentFrequency" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="ProductLine" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="PolicyDetails" Relationship="Self.fk_ProdId" FromRole="products" ToRole="PolicyDetails" />
+        </EntityType>
+        <Association Name="fk_CustId">
+          <End Role="Customer" Type="Self.Customer" Multiplicity="0..1" />
+          <End Role="Nominee" Type="Self.Nominee" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Customer">
+              <PropertyRef Name="CustomerId" />
+            </Principal>
+            <Dependent Role="Nominee">
+              <PropertyRef Name="CustomerId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_CustId1">
+          <End Role="Customer" Type="Self.Customer" Multiplicity="0..1" />
+          <End Role="PolicyDetails" Type="Self.PolicyDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Customer">
+              <PropertyRef Name="CustomerId" />
+            </Principal>
+            <Dependent Role="PolicyDetails">
+              <PropertyRef Name="CustomerId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_custIDoc">
+          <End Role="Customer" Type="Self.Customer" Multiplicity="0..1" />
+          <End Role="Documents" Type="Self.Document" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Customer">
+              <PropertyRef Name="CustomerId" />
+            </Principal>
+            <Dependent Role="Documents">
+              <PropertyRef Name="CustomerId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_id">
+          <End Role="Customer" Type="Self.Customer" Multiplicity="0..1" />
+          <End Role="LoginDetails" Type="Self.LoginDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Customer">
+              <PropertyRef Name="CustomerId" />
+            </Principal>
+            <Dependent Role="LoginDetails">
+              <PropertyRef Name="CustomerId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_id1">
+          <End Role="Customer" Type="Self.Customer" Multiplicity="0..1" />
+          <End Role="Endorsement" Type="Self.Endorsement" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Customer">
+              <PropertyRef Name="CustomerId" />
+            </Principal>
+            <Dependent Role="Endorsement">
+              <PropertyRef Name="CustomerId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_endid">
+          <End Role="Documents" Type="Self.Document" Multiplicity="0..1" />
+          <End Role="Endorsement" Type="Self.Endorsement" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Documents">
+              <PropertyRef Name="EndorsementId" />
+            </Principal>
+            <Dependent Role="Endorsement">
+              <PropertyRef Name="EndorsementId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_ProdId">
+          <End Role="products" Type="Self.product" Multiplicity="0..1" />
+          <End Role="PolicyDetails" Type="Self.PolicyDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="products">
+              <PropertyRef Name="ProductId" />
+            </Principal>
+            <Dependent Role="PolicyDetails">
+              <PropertyRef Name="ProductId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="Training_12Dec18_BangaloreEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Customers" EntityType="Self.Customer" />
+          <EntitySet Name="Documents" EntityType="Self.Document" />
+          <EntitySet Name="Endorsements" EntityType="Self.Endorsement" />
+          <EntitySet Name="LoginAdmins" EntityType="Self.LoginAdmin" />
+          <EntitySet Name="LoginDetails" EntityType="Self.LoginDetail" />
+          <EntitySet Name="Nominees" EntityType="Self.Nominee" />
+          <EntitySet Name="PolicyDetails" EntityType="Self.PolicyDetail" />
+          <EntitySet Name="products" EntityType="Self.product" />
+          <AssociationSet Name="fk_CustId" Association="Self.fk_CustId">
+            <End Role="Customer" EntitySet="Customers" />
+            <End Role="Nominee" EntitySet="Nominees" />
+          </AssociationSet>
+          <AssociationSet Name="fk_CustId1" Association="Self.fk_CustId1">
+            <End Role="Customer" EntitySet="Customers" />
+            <End Role="PolicyDetails" EntitySet="PolicyDetails" />
+          </AssociationSet>
+          <AssociationSet Name="fk_custIDoc" Association="Self.fk_custIDoc">
+            <End Role="Customer" EntitySet="Customers" />
+            <End Role="Documents" EntitySet="Documents" />
+          </AssociationSet>
+          <AssociationSet Name="fk_id" Association="Self.fk_id">
+            <End Role="Customer" EntitySet="Customers" />
+            <End Role="LoginDetails" EntitySet="LoginDetails" />
+          </AssociationSet>
+          <AssociationSet Name="fk_id1" Association="Self.fk_id1">
+            <End Role="Customer" EntitySet="Customers" />
+            <End Role="Endorsement" EntitySet="Endorsements" />
+          </AssociationSet>
+          <AssociationSet Name="fk_endid" Association="Self.fk_endid">
+            <End Role="Documents" EntitySet="Documents" />
+            <End Role="Endorsement" EntitySet="Endorsements" />
+          </AssociationSet>
+          <AssociationSet Name="fk_ProdId" Association="Self.fk_ProdId">
+            <End Role="products" EntitySet="products" />
+            <End Role="PolicyDetails" EntitySet="PolicyDetails" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="Training_12Dec18_BangaloreModelStoreContainer" CdmEntityContainer="Training_12Dec18_BangaloreEntities">
+          <EntitySetMapping Name="Customers">
+            <EntityTypeMapping TypeName="Training_12Dec18_BangaloreModel.Customer">
+              <MappingFragment StoreEntitySet="Customer">
+                <ScalarProperty Name="CustomerId" ColumnName="CustomerId" />
+                <ScalarProperty Name="CustomerName" ColumnName="CustomerName" />
+                <ScalarProperty Name="Age" ColumnName="Age" />
+                <ScalarProperty Name="CustomerAddress" ColumnName="CustomerAddress" />
+                <ScalarProperty Name="CustomerPhoneNo" ColumnName="CustomerPhoneNo" />
+                <ScalarProperty Name="Gender" ColumnName="Gender" />
+                <ScalarProperty Name="DOB" ColumnName="DOB" />
+                <ScalarProperty Name="Habits" ColumnName="Habits" />
+                <ScalarProperty Name="Hobbies" ColumnName="Hobbies" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Documents">
+            <EntityTypeMapping TypeName="Training_12Dec18_BangaloreModel.Document">
+              <MappingFragment StoreEntitySet="Documents">
+                <ScalarProperty Name="EndorsementId" ColumnName="EndorsementId" />
+                <ScalarProperty Name="CustomerId" ColumnName="CustomerId" />
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="images" ColumnName="images" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Endorsements">
+            <EntityTypeMapping TypeName="Training_12Dec18_BangaloreModel.Endorsement">
+              <MappingFragment StoreEntitySet="Endorsement">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="CustomerId" ColumnName="CustomerId" />
+                <ScalarProperty Name="EndorsementId" ColumnName="EndorsementId" />
+                <ScalarProperty Name="EndorsementStatus" ColumnName="EndorsementStatus" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="LoginAdmins">
+            <EntityTypeMapping TypeName="Training_12Dec18_BangaloreModel.LoginAdmin">
+              <MappingFragment StoreEntitySet="LoginAdmin">
+                <ScalarProperty Name="loginId" ColumnName="loginId" />
+                <ScalarProperty Name="loginPassword" ColumnName="loginPassword" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="LoginDetails">
+            <EntityTypeMapping TypeName="Training_12Dec18_BangaloreModel.LoginDetail">
+              <MappingFragment StoreEntitySet="LoginDetails">
+                <ScalarProperty Name="CustomerId" ColumnName="CustomerId" />
+                <ScalarProperty Name="loginId" ColumnName="loginId" />
+                <ScalarProperty Name="loginPassword" ColumnName="loginPassword" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Nominees">
+            <EntityTypeMapping TypeName="Training_12Dec18_BangaloreModel.Nominee">
+              <MappingFragment StoreEntitySet="Nominee">
+                <ScalarProperty Name="NomineeId" ColumnName="NomineeId" />
+                <ScalarProperty Name="CustomerId" ColumnName="CustomerId" />
+                <ScalarProperty Name="NomineeName" ColumnName="NomineeName" />
+                <ScalarProperty Name="Relation" ColumnName="Relation" />
+                <ScalarProperty Name="Age" ColumnName="Age" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PolicyDetails">
+            <EntityTypeMapping TypeName="Training_12Dec18_BangaloreModel.PolicyDetail">
+              <MappingFragment StoreEntitySet="PolicyDetails">
+                <ScalarProperty Name="PolicyNumber" ColumnName="PolicyNumber" />
+                <ScalarProperty Name="CustomerId" ColumnName="CustomerId" />
+                <ScalarProperty Name="ProductId" ColumnName="ProductId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="products">
+            <EntityTypeMapping TypeName="Training_12Dec18_BangaloreModel.product">
+              <MappingFragment StoreEntitySet="products">
+                <ScalarProperty Name="ProductId" ColumnName="ProductId" />
+                <ScalarProperty Name="ProductName" ColumnName="ProductName" />
+                <ScalarProperty Name="PremiumPayment" ColumnName="PremiumPayment" />
+                <ScalarProperty Name="PremiumPaymentFrequency" ColumnName="PremiumPaymentFrequency" />
+                <ScalarProperty Name="ProductLine" ColumnName="ProductLine" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
